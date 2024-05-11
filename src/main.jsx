@@ -24,6 +24,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import AddFood from './components/foods/AddFood.jsx';
+import AllFoods from './components/foods/AllFoods.jsx';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:'/foods',
         element: <AddFood></AddFood>
+      },
+      {
+        path:'/allfoods',
+        element: <AllFoods></AllFoods>
       },
       
 

@@ -41,7 +41,7 @@ const Navbar = () => {
                 : isPending
                   ? "pending"
                   : ("text-black")
-            } to="/"><p className={` ${darkTheme ? ' text-white' : ''}`}>All Food</p></NavLink></li>                        
+            } to="/allfoods"><p className={` ${darkTheme ? ' text-white' : ''}`}>All Food</p></NavLink></li>                        
 <li><NavLink className={({ isActive, isPending }) =>
               isActive
                 ? ("text-green-500")
@@ -70,7 +70,7 @@ const Navbar = () => {
                 : isPending
                   ? "pending"
                   : ("text-black")
-            } to="/"><p className={` ${darkTheme ? ' text-white' : ''}`}>All Food</p></NavLink></li>                    
+            } to="/allfoods"><p className={` ${darkTheme ? ' text-white' : ''}`}>All Food</p></NavLink></li>                    
 <li><NavLink className={({ isActive, isPending }) =>
               isActive
                 ? ("text-green-500")
