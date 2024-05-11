@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import TopFoods from './foods/TopFoods';
 
 const Banner = () => {
 
@@ -30,9 +31,9 @@ const Banner = () => {
     };
     
     return (
-        <div>
-          <div className="flex  h-fit rounded-full">
-            <div className="lg:w-1/4 md:w-1/4 w-1/3 h-full">
+        <div className='w-full'>
+          <div className="grid grid-cols-3 h-fit  overflow-hidden">
+            <div className="h-full">
               <Slider {...firstCarouselSettings}>
                 <div style={carouselItemStyle}>
                   <img src="https://i.ibb.co/hD18LMs/side-view-fried-meat-with-french-fries-ketchup.jpg" alt="Carousel Image 1" style={carouselItemStyle} />
@@ -42,13 +43,13 @@ const Banner = () => {
                 </div>
               </Slider>
             </div>
-            <div className="lg:w-2/4 md:w-2/4 w-1/3  h-[600px] flex flex-col justify-center items-center text-white bg-black lg:p-12 md:p-12 p-4">
+            <div className="h-[600px] flex flex-col justify-center items-center text-white bg-black lg:p-12 md:p-12 p-4">
               <h1 className="lg:text-4xl md:text-4xl text-xl font-bold mb-4 logo-font">RestoSync</h1>
               <img src="https://i.ibb.co/f8qWJY4/OIG4-m-M0lvw5e-Lb-Jt.jpg" alt="" className='lg:h-48 lg:w-48 md:h-48 md:w-48 h-24 w-24 rounded-full mb-8'/>
               <p className="text-xs text-gray-300 text-center mb-4 font-paragraph">Discover a culinary haven at RestoSync, where every craving meets convenience. Explore a world of flavors and effortlessly satisfy your appetite with our seamless food purchasing experience.</p>
               <a href="/all-foods" className="bg-green-500 text-white px-4 py-2 rounded-full lg:w-36 md:w-36 w-24 text-center hover:bg-yellow-400 transition duration-300">All Foods</a>
             </div>
-            <div className="lg:w-1/4 md:w-1/4 w-1/3 h-full">
+            <div className="h-full">
               <Slider {...secondCarouselSettings}>
                 <div style={carouselItemStyle}>
                   <img src="https://i.ibb.co/XVphNZ4/grilled-chicken-legs-flaming-grill-with-grilled-vegetables-with-tomatoes-potatoes-pepper-seeds-salt.jpg" alt="Carousel Image 3" style={carouselItemStyle} />
@@ -59,8 +60,9 @@ const Banner = () => {
               </Slider>
             </div>
           </div>
+          <TopFoods></TopFoods>
         </div>
-      );
+    );
 };
 
 export default Banner;

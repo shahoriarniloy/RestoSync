@@ -23,6 +23,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AddFood from './components/foods/AddFood.jsx';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,12 @@ const router = createBrowserRouter([
         path:'/updateprofile',
         element: <PrivateRoutes><UpdateProfile></UpdateProfile></PrivateRoutes>
       },
+      {
+        path:'/foods',
+        element: <AddFood></AddFood>
+      },
+      
+
       
       {
         path: '*',
