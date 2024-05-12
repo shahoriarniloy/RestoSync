@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -96,7 +96,7 @@ const AddFood = () => {
             console.log('inside post response', data);
             if (data.insertedId) {
                 toast.success("Food Item Added Successfully");
-                // navigate('/userfoods');
+                navigate('/allfoods');
             }
         });
     }

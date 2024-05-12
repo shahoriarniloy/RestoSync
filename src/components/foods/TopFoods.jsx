@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const TopFoods = () => {
     const [topFoods, setTopFoods] = useState([]);
@@ -14,7 +15,7 @@ const TopFoods = () => {
 
     return (
         <div className="container mx-auto">
-            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6'>Top Foods</h1>
+            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500'>Top Foods</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center">
                 {topFoods.map(food => (
                     <div key={food._id} className="card card-compact bg-base-100 shadow-xl">
@@ -29,7 +30,7 @@ const TopFoods = () => {
                                 <p className='text-green-600'>Price: ${food.price}</p>
                             </div>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Details</button>
+                            <Link to={`/fooddetails/${food._id}`} className="btn bg-orange-500  hover:bg-yellow-400 text-white">Details</Link>                            
                             </div>
                         </div>
                     </div>

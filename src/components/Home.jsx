@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TopFoods from './foods/TopFoods';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
 
@@ -47,7 +48,7 @@ const Banner = () => {
               <h1 className="lg:text-4xl md:text-4xl text-orange-500 text-xl font-bold mb-4 logo-font">RestoSync</h1>
               <img src="https://i.ibb.co/f8qWJY4/OIG4-m-M0lvw5e-Lb-Jt.jpg" alt="" className='lg:h-48 lg:w-48 md:h-48 md:w-48 h-24 w-24 rounded-full mb-8'/>
               <p className="text-xs text-gray-300 text-center mb-4 font-paragraph">Discover a culinary haven at RestoSync, where every craving meets convenience. Explore a world of flavors and effortlessly satisfy your appetite with our seamless food purchasing experience.</p>
-              <a href="/all-foods" className="bg-orange-500 text-white px-4 py-2 rounded-full lg:w-36 md:w-36 w-24 text-center hover:bg-yellow-400 transition duration-300">All Foods</a>
+              <Link to="/allfoods" className="bg-orange-500 text-white px-4 py-2 rounded-full lg:w-36 md:w-36 w-24 text-center hover:bg-yellow-400 transition duration-300">All Foods</Link>
             </div>
             <div className="h-full">
               <Slider {...secondCarouselSettings}>

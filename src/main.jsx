@@ -25,6 +25,8 @@ import {
 } from "react-router-dom";
 import AddFood from './components/foods/AddFood.jsx';
 import AllFoods from './components/foods/AllFoods.jsx';
+import SingleFood from './components/foods/SingleFood.jsx';
+import Purchase from './components/purchase/Purchase.jsx';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,18 @@ const router = createBrowserRouter([
       {
         path:'/allfoods',
         element: <AllFoods></AllFoods>
+      },
+      {
+        path:'/fooddetails/:id',
+        element: <SingleFood></SingleFood>,
+        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+
+      },
+      {
+        path:'/purchase/:id',
+        element: <Purchase></Purchase>,
+        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+
       },
       
 
