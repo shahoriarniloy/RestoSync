@@ -120,7 +120,8 @@ const Navbar = () => {
                             {user.displayName ? user.displayName : `Profile`}
                         </Link>
                     </li>
-                    <li><a>Settings</a></li>
+                    <li><button ><Link to="/foods">Add Food Item</Link></button></li>
+                    <li><button ><Link to="/userfoods">My Food Items</Link></button></li>
                     <li><a onClick={handleLogOut}>Logout</a></li>
                 </ul>
             </>

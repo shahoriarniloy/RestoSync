@@ -28,6 +28,8 @@ import AllFoods from './components/foods/AllFoods.jsx';
 import SingleFood from './components/foods/SingleFood.jsx';
 import Purchase from './components/purchase/Purchase.jsx';
 import Gallery from './components/Gallery.jsx';
+import UserFoods from './components/foods/UserFoods.jsx';
+import UpdateFood from './components/foods/UpdateFood.jsx';
 
 const router = createBrowserRouter([
   {
@@ -79,6 +81,20 @@ const router = createBrowserRouter([
       {
         path:'/gallery',
         element: <Gallery></Gallery>
+      },
+      {
+        path:'/userfoods',
+        element: <UserFoods></UserFoods>,
+
+
+      },
+      {
+        path:'/userfood/update/:id',
+        element: <UpdateFood></UpdateFood>,
+        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+
+
+
       },
       
 
