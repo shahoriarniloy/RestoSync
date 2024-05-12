@@ -1,10 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import { useContext } from "react";
 
 
 const SingleFood = () => {
     const loadedFood = useLoaderData();
+    const {user} = useContext(AuthContext)
 
     return (
         <div>
@@ -27,15 +30,40 @@ const SingleFood = () => {
                         <p className="badge badge-outline p-4">Quantity:{loadedFood.quantity}</p>
                         <p className="badge badge-outline p-4 bg-yellow-500"><strong>Price:</strong> ${loadedFood.price}</p>
                     </div>
-                    
-                    {loadedFood.quantity > 0 ? (
+
+
+                   {user && user.email!=loadedFood.addedBy.email? (<div>
+                    <button className="btn bg-orange-500" disabled>Purchase</button>
+                   </div>):( <div>{loadedFood.quantity > 0 ? (
                         <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
                     ) : (
                         <div>
                             <p className="text-red-500">This item is currently not available for purchase.</p>
                             <button className="btn bg-orange-500" disabled>Purchase</button>
                         </div>
-                    )}
+                    ) }</div>)}
+
+{/* 
+                    {user.email!=loadedFood.addedBy.email? (<div> {loadedFood.quantity > 0 ? (
+                        <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
+                    ) : (
+                        <div>
+                            <p className="text-red-500">This item is currently not available for purchase.</p>
+                            <button className="btn bg-orange-500" disabled>Purchase</button>
+                        </div>
+                    ) }</div>):( <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>)} */}
+
+
+
+                    
+                    {/* {loadedFood.quantity > 0 ? (
+                        <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
+                    ) : (
+                        <div>
+                            <p className="text-red-500">This item is currently not available for purchase.</p>
+                            <button className="btn bg-orange-500" disabled>Purchase</button>
+                        </div>
+                    )} */}
                 </div>
             </div>
         </div>
