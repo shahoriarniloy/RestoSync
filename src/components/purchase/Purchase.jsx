@@ -11,6 +11,7 @@ const Purchase = () => {
     const [formData, setFormData] = useState({
         foodName: '',
         price: '',
+        image: '',
         quantity: 1,
         buyerName: '',
         buyerEmail: '',
@@ -24,7 +25,8 @@ const Purchase = () => {
                 buyerName: user.displayName,
                 buyerEmail: user.email,
                 foodName: loadedFood.foodName, 
-                price: loadedFood.price
+                price: loadedFood.price,
+                image: loadedFood.foodImage
             }));
         }
     }, [user, loadedFood]);
