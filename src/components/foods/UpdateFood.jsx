@@ -36,7 +36,7 @@ const UpdateFood = () => {
             shortDescription,
             addBy
         };
-        fetch(`http://localhost:5000/userpurchase/${loadedFood._id}`, {            
+        fetch(`http://localhost:5000/userfood/update/${loadedFood._id}`, {            
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,6 +50,7 @@ const UpdateFood = () => {
                 return res.json();
             })
             .then(data => {
+                console.log(data);
                 toast.success("Food item updated successfully");
                 navigate('/userfoods');
             })

@@ -14,7 +14,6 @@ const UserFoods = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch user foods');
         }
-        console.log(response);
         return response.json();
       })
       .then(data => {
@@ -53,7 +52,6 @@ const UserFoods = () => {
           <tr>
             <th>Image</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
             <th>Update</th>
           </tr>
@@ -65,11 +63,10 @@ const UserFoods = () => {
                 <img 
                     src={food.foodImage} 
                     alt={food.foodName} 
-                    className="h-36 w-1/2 object-cover" 
+                    className="h-36 lg:w-1/2 md:w-1/2 w-full object-cover" 
                 />
                 </td>
               <td>{food.foodName}</td>
-              <td>{food.shortDescription}</td>
               <td>${food.price}</td>
               <td><Link to={`/userfood/update/${food._id}`} className="btn btn-warning">Update</Link></td>
             </tr>

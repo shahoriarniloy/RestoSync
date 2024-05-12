@@ -122,7 +122,7 @@ const Navbar = () => {
                     </li>
                     <li><button ><Link to="/foods">Add Food Item</Link></button></li>
                     <li><button ><Link to="/userfoods">My Food Items</Link></button></li>
-                    <li><button ><Link to="/userpurchases">My Purchases</Link></button></li>
+                    <li><button ><Link to="/userpurchases/:id">My Purchases</Link></button></li>
 
                     <li><a onClick={handleLogOut}>Logout</a></li>
                 </ul>
