@@ -2,35 +2,36 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../providers/AuthProvider';
 
-const UserFoods = () => {
-  const [userFoods, setUserFoods] = useState([]);
+const MyPurchase = () => {
+  const [userPurchases, setUserPurchases] = useState([]);
   const { user, loading } = useContext(AuthContext);
-  
-  useEffect(() => {
-    if (!user) return; // Add this check to avoid fetching when user is null
 
-    fetch(`http://localhost:5000/userfoods/${user.email}`)
-      .then(response => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!user) return; 
+
+        const response = await fetch(`http://localhost:5000/userpurchase/${user.email}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch user foods');
+          throw new Error('Failed to fetch user purchases');
         }
-        console.log(response);
-        return response.json();
-      })
-      .then(data => {
+
+        const data = await response.json();
         if (Array.isArray(data)) {
-          setUserFoods(data);
+          setUserPurchases(data);
         } else if (typeof data === 'object' && data !== null) {
-          setUserFoods([data]);
+          setUserPurchases([data]);
         } else {
           console.error('Data received from server is not valid:', data);
-          setUserFoods([]); 
+          setUserPurchases([]); 
         }
-      })
-      .catch(error => {
-        console.error('Error fetching user foods:', error);
-      });
-  }, [user]); // Add user to the dependency array
+      } catch (error) {
+        console.error('Error fetching user purchases:', error);
+      }
+    };
+
+    fetchData();
+  }, [user]); 
 
   if (loading) {
     return (
@@ -43,11 +44,9 @@ const UserFoods = () => {
     );
   }
 
-  
-
   return (
     <div>
-      <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">User Foods</h1>
+      <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">My Purchases</h1>
       <table className="table table-zebra">
         <thead>
           <tr>
@@ -59,15 +58,15 @@ const UserFoods = () => {
           </tr>
         </thead>
         <tbody>
-          {userFoods.map((food) => (
+          {userPurchases.map((food) => (
             <tr key={food._id} className="hover">
-                <td>
+              <td>
                 <img 
-                    src={food.foodImage} 
-                    alt={food.foodName} 
-                    className="h-36 w-1/2 object-cover" 
+                  src={food.image} 
+                  alt={food.foodName} 
+                  className="h-36 lg:w-1/2 md:w-1/2 w-full object-cover" 
                 />
-                </td>
+              </td>
               <td>{food.foodName}</td>
               <td>{food.shortDescription}</td>
               <td>${food.price}</td>
@@ -80,4 +79,4 @@ const UserFoods = () => {
   );
 };
 
-export default UserFoods;
+export default MyPurchase;

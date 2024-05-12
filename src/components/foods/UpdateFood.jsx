@@ -36,7 +36,7 @@ const UpdateFood = () => {
             shortDescription,
             addBy
         };
-        fetch(`http://localhost:5000/userfood/update/${loadedFood._id}`, {            
+        fetch(`http://localhost:5000/userpurchase/${loadedFood._id}`, {            
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

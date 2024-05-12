@@ -28,7 +28,6 @@ const SingleFood = () => {
                         <p className="badge badge-outline p-4 bg-yellow-500"><strong>Price:</strong> ${loadedFood.price}</p>
                     </div>
                     
-                    {/* Conditionally render the purchase button or message */}
                     {loadedFood.quantity > 0 ? (
                         <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
                     ) : (

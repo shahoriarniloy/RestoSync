@@ -30,6 +30,7 @@ import Purchase from './components/purchase/Purchase.jsx';
 import Gallery from './components/Gallery.jsx';
 import UserFoods from './components/foods/UserFoods.jsx';
 import UpdateFood from './components/foods/UpdateFood.jsx';
+import MyPurchase from './components/purchase/MyPurchase.jsx';
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
         element: <UpdateFood></UpdateFood>,
         loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
 
+      },
+      {
+        path:'/userpurchases/:id',
+        element: <MyPurchase></MyPurchase>,
 
 
       },
