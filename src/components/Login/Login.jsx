@@ -25,7 +25,6 @@ const Login = () => {
     const navigate = useNavigate();
     const { darkTheme } = useTheme();
 
-
     const handleLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -64,10 +63,11 @@ const Login = () => {
             .then(result => {
                 toast.success("Signed In");
                 const loggedInUser = result.user;
-                navigate(location?.state?location.state:'/');
 
                 
                 setUser(loggedInUser);
+                navigate(location.state && location.state.from ? location.state.from : '/');
+
 
             })
             .catch(error => {
@@ -95,10 +95,10 @@ const Login = () => {
             .then(result => {
                 toast.success("Signed In");
                 const loggedUser = result.user;
-                navigate(location?.state?location.state:'/');
-
 
                 setUser(loggedUser);
+                navigate(location.state && location.state.from ? location.state.from : '/');
+
 
             })
             .catch(error => {

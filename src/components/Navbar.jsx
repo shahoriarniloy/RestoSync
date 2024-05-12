@@ -48,7 +48,7 @@ const Navbar = () => {
                 : isPending
                   ? "pending"
                   : ("text-black")
-            } to="/"><p className={` ${darkTheme ? ' text-white' : ''}`}>Gallery</p></NavLink></li>                    </ul>
+            } to="/gallery"><p className={` ${darkTheme ? ' text-white' : ''}`}>Gallery</p></NavLink></li>                    </ul>
                 </div>
                 <div className='h-12 w-12 rounded-full overflow-hidden'>
     <img src="https://i.ibb.co/f8qWJY4/OIG4-m-M0lvw5e-Lb-Jt.jpgRestoSync" alt="RestoSync" className="h-12 w-12 " />
@@ -77,7 +77,7 @@ const Navbar = () => {
                 : isPending
                   ? "pending"
                   : ("text-black")
-            } to="/"><p className={` ${darkTheme ? ' text-white' : ''}`}>Gallery</p></NavLink></li>                </ul>
+            } to="/gallery"><p className={` ${darkTheme ? ' text-white' : ''}`}>Gallery</p></NavLink></li>                </ul>
             </div>
             <div className="navbar-end">
 
@@ -111,7 +111,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={handleLogOut}>Logout</a></li>
                         </ul>
                     </div>
                 </div>

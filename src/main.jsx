@@ -27,6 +27,7 @@ import AddFood from './components/foods/AddFood.jsx';
 import AllFoods from './components/foods/AllFoods.jsx';
 import SingleFood from './components/foods/SingleFood.jsx';
 import Purchase from './components/purchase/Purchase.jsx';
+import Gallery from './components/Gallery.jsx';
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
         element: <Purchase></Purchase>,
         loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
 
+      },
+      {
+        path:'/gallery',
+        element: <Gallery></Gallery>
       },
       
 

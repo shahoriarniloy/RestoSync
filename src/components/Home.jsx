@@ -62,6 +62,7 @@ const Banner = () => {
             </div>
           </div>
           <TopFoods></TopFoods>
+
         </div>
     );
 };

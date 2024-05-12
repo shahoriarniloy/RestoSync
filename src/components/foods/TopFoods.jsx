@@ -36,6 +36,10 @@ const TopFoods = () => {
                     </div>
                 ))}
             </div>
+            <div className='flex justify-center mt-8'>
+                <Link to="/allfoods"><button  className="bg-orange-500 text-white p-2 w-72 text-center hover:bg-yellow-400 rounded-lg">All Foods</button></Link>
+            </div>
+
         </div>
     );
 };
