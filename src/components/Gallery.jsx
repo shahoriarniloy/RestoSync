@@ -92,6 +92,11 @@ const Gallery = () => {
 
     return (
         <div>
+           <div className="bg-white bg-opacity-50 bg-cover w-full h-54" style={{backgroundImage: "url('https://i.ibb.co/TRfPJHL/fresh-gourmet-meal-beef-taco-salad-plate-generated-by-ai.jpg')"}}>
+                <h1 className='font-tittle text-orange-500 text-center lg:text-8xl md:text-4xl text-xl py-24'>Gallery</h1>
+            </div>
+
+
             <div>
                 <button className="btn bg-orange-500 ml-4 mt-12 text-white" onClick={openModal}>
                     <FaPlus className="text-4xl hover:bg-yellow-500" />Add Feedback

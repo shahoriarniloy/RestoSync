@@ -37,7 +37,6 @@ const Purchase = () => {
         const { name, value } = event.target;
         if (name === 'quantity') {
             if (parseInt(value) <= 0 || isNaN(parseInt(value))) {
-                // Quantity is 0 or less or not a number, set it to 1
                 setFormData({ ...formData, [name]: 1 });
             } else {
                 setFormData({ ...formData, [name]: parseInt(value) });
