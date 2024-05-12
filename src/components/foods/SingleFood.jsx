@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 const SingleFood = () => {
     const loadedFood = useLoaderData();
 
-
-
     return (
         <div>
             <Helmet>
@@ -21,23 +19,26 @@ const SingleFood = () => {
                     <p>{loadedFood.shortDescription}</p>
                     
                     <div className="flex justify-between gap-6">
-                    <p className="badge badge-outline p-4">Category: {loadedFood.foodCategory}</p>
-                    <p className="badge badge-outline p-4">Origin: {loadedFood.foodOrigin}</p>
+                        <p className="badge badge-outline p-4">Category: {loadedFood.foodCategory}</p>
+                        <p className="badge badge-outline p-4">Origin: {loadedFood.foodOrigin}</p>
                     </div>
-
-
 
                     <div className=" flex justify-between gap-6">
                         <p className="badge badge-outline p-4">Quantity:{loadedFood.quantity}</p>
-
                         <p className="badge badge-outline p-4 bg-yellow-500"><strong>Price:</strong> ${loadedFood.price}</p>
                     </div>
-                    <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
-
+                    
+                    {/* Conditionally render the purchase button or message */}
+                    {loadedFood.quantity > 0 ? (
+                        <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
+                    ) : (
+                        <div>
+                            <p className="text-red-500">This item is currently not available for purchase.</p>
+                            <button className="btn bg-orange-500" disabled>Purchase</button>
+                        </div>
+                    )}
                 </div>
             </div>
-
-            
         </div>
     );
 };
