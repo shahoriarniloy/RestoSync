@@ -32,11 +32,11 @@ const SingleFood = () => {
                     </div>
 
 
-                   {user && user.email!=loadedFood.addedBy.email? (<div>
-                    <button className="btn bg-orange-500" disabled>Purchase</button>
-                   </div>):( <div>{loadedFood.quantity > 0 ? (
-                        <Link to={`/purchase/${loadedFood._id}`} className="btn bg-orange-500">Purchase</Link>
-                    ) : (
+                   {user && user.email!=loadedFood.addedBy.email && loadedFood.quantity > 0? (<div>
+                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500" >Purchase</button></Link>
+                   </div>):( <div>{!user && loadedFood.quantity > 0 ? (
+                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500" >Purchase</button></Link>
+                ) : (
                         <div>
                             <p className="text-red-500">This item is currently not available for purchase.</p>
                             <button className="btn bg-orange-500" disabled>Purchase</button>
