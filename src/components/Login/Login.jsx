@@ -166,8 +166,7 @@ const Login = () => {
                         <div>
                             <h2 className="text-sm text-center text-gray-600  mt-6 mb-2">Or, Sign In With:</h2>
                             <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center items-center gap-6"> 
-                                <button onClick={handleGoogleSignIn} className="btn bg-white lg:mr-4 md:mr-4"><img className="w-12 h-auto" src="https://i.ibb.co/vdFs62T/github.png" alt="" style={{ width: "32px", height: "32px" }} />Google Login</button>
-                                <button onClick={handleGitHubSignIn} className="btn bg-yellow-400"><img className="w-12 h-auto" src="https://i.ibb.co/vdFs62T/github.png" alt="" style={{ width: "32px", height: "32px" }}  />GitHub Login</button>
+                                <button onClick={handleGoogleSignIn} className="btn bg-white lg:mr-4 md:mr-4"><img className="w-12 h-auto" src="https://i.ibb.co/CQFy59y/google.png" alt="" style={{ width: "32px", height: "32px" }} />Google Login</button>
                             </div>
                         </div>
                     )}

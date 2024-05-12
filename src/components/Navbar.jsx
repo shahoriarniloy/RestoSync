@@ -7,7 +7,7 @@ import { useTheme } from './Theme';
 
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const { darkTheme, toggleTheme } = useTheme();
 
   
@@ -16,6 +16,16 @@ const Navbar = () => {
       .then(() => console.log('Logged Out'))
       .catch(error => console.error(error));
   };
+  if (loading) {
+    return (
+        <div className='flex flex-row justify-center items-center'>
+            <span className="loading loading-spinner text-warning"></span>
+            <span className="loading loading-spinner text-error"></span>
+            <span className="loading loading-spinner text-warning"></span>
+            <span className="loading loading-spinner text-error"></span>
+        </div>
+    );
+}
 
 
     return (
@@ -95,26 +105,31 @@ const Navbar = () => {
 
 
 
-
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-12 rounded-full">
-                                <img className="rounded-full h-16 w-16 border border-white lg:border-2" alt="Profile Image" src={user ? user.photoURL : "https://i.ibb.co/v1qmfRn/836.jpg"} />
-
-                            </div>
-                        </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <Link to="/profile" className="justify-between">
-                                    {user ? user.displayName: `Profile`}
-                                </Link>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a onClick={handleLogOut}>Logout</a></li>
-                        </ul>
+            <div className="flex-none">
+    <div className="dropdown dropdown-end">
+        {user ? (
+            <>
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    <div className="w-12 rounded-full">
+                        <img className="rounded-full h-16 w-16 border border-white lg:border-2" alt="Profile Image" src={user.photoURL ? user.photoURL : "https://i.ibb.co/v1qmfRn/836.jpg"} />
                     </div>
                 </div>
+                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                        <Link to="/profile" className="justify-between">
+                            {user.displayName ? user.displayName : `Profile`}
+                        </Link>
+                    </li>
+                    <li><a>Settings</a></li>
+                    <li><a onClick={handleLogOut}>Logout</a></li>
+                </ul>
+            </>
+        ) : (
+            <button className='btn btn-primary'><Link to="/login">Login</Link></button>
+        )}
+    </div>
+</div>
+
             </div>
         </div>
     );
