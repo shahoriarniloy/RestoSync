@@ -24,7 +24,7 @@ const AllFoods = () => {
 
     return (
         <div className="container mx-auto">
-            <h1 className='lg:text-4xl md:text-4xl text-orange-500 text-xl text-center font-tittle mt-6 mb-6'>All Foods</h1>
+            <div className=" lg:text-4xl md:text-4xl text-orange-500 text-xl text-center font-tittle mt-6 mb-6">All Foods</div>
             <div className="mx-auto w-3/4 mb-6">
                 <input
                     type="text"
@@ -36,16 +36,23 @@ const AllFoods = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center">
                 {filteredFoods.map(food => (
-                    <div key={food._id} className="card card-compact bg-red-100 shadow-xl">
+                    <div key={food._id} className="card card-compact bg-red-200 shadow-xl">
                         <figure className="h-64 w-full">
                             <img src={food.foodImage} alt={food.foodName} className="image" />
                         </figure>
                         <div className="card-body">
                             <h2 className="card-title">{food.foodName}</h2>
+                            {food.quantity === 0 ? (
+                                <p className='btn w-full text-white bg-red-500 '>Not Available</p>
+                                ) : (
+                                <p className='btn w-full text-white bg-green-600'>Available Quantity: {food.quantity}</p>
+                                )}
                             <p>{food.shortDescription}</p>
                             <div className='flex justify-between'>
-                                <p className='text-red-500 font-paragraph'>Category: {food.foodCategory}</p>
-                                <p className='text-green-600'>Price: ${food.price}</p>
+                                <p className='btn text-blue-600 font-paragraph mr-2'>Category: {food.foodCategory}</p>
+                                <p className='btn text-pink-600 mr-2'>Price: ${food.price}</p>
+                               
+
                             </div>
                             <div className="card-actions justify-end">
                                 <Link to={`/fooddetails/${food._id}`} className="btn btn-primary">Details</Link>

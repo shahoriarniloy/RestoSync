@@ -22,24 +22,24 @@ const SingleFood = () => {
                     <p>{loadedFood.shortDescription}</p>
                     
                     <div className="flex justify-between gap-6">
-                        <p className="badge badge-outline p-4">Category: {loadedFood.foodCategory}</p>
-                        <p className="badge badge-outline p-4">Origin: {loadedFood.foodOrigin}</p>
+                        <p className="badge badge-outline p-4 text-sm">Category: {loadedFood.foodCategory}</p>
+                        <p className="badge badge-outline p-4 text-sm">Origin: {loadedFood.foodOrigin}</p>
                     </div>
 
                     <div className=" flex justify-between gap-6">
-                        <p className="badge badge-outline p-4">Quantity:{loadedFood.quantity}</p>
-                        <p className="badge badge-outline p-4 bg-yellow-500"><strong>Price:</strong> ${loadedFood.price}</p>
+                        <p className="badge badge-outline p-4 text-sm">Quantity:{loadedFood.quantity}</p>
+                        <p className="badge badge-outline p-4 text-sm bg-yellow-500"><strong>Price:</strong> ${loadedFood.price}</p>
                     </div>
 
 
                    {user && user.email!=loadedFood.addedBy.email && loadedFood.quantity > 0? (<div>
-                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500" >Purchase</button></Link>
+                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500 w-full hover:bg-yellow-400 text-white" >Purchase</button></Link>
                    </div>):( <div>{!user && loadedFood.quantity > 0 ? (
-                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500" >Purchase</button></Link>
+                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500 w-full text-white  hover:bg-yellow-400" >Purchase</button></Link>
                 ) : (
                         <div>
-                            <p className="text-red-500">This item is currently not available for purchase.</p>
-                            <button className="btn bg-orange-500" disabled>Purchase</button>
+                            <p className="text-red-500 text-center ">This item is currently not available for purchase.</p>
+                            <button className="btn bg-orange-500 w-full hover:bg-red-400 text-white" disabled>Purchase</button>
                         </div>
                     ) }</div>)}
 

@@ -1,10 +1,11 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { Helmet } from 'react-helmet';
+import useAxiosSecure from '../../hooks/useAxiosSecure'; 
 
 const AddFood = () => {
     const navigate = useNavigate();
@@ -57,7 +58,9 @@ const AddFood = () => {
         "Caribbean"
     ];
 
-    const handleAddFood = event => {
+    const axiosSecure = useAxiosSecure(); 
+
+    const handleAddFood = async event => {
         event.preventDefault();
         const form = event.target;
         const foodName = form.foodName.value;
@@ -67,7 +70,7 @@ const AddFood = () => {
         const price = form.price.value;
         const foodOrigin = form.foodOrigin.value;
         const shortDescription = form.shortDescription.value;
-        const count = 0; 
+        const count = 0;
 
         const foodItem = {
             foodName,
@@ -84,21 +87,16 @@ const AddFood = () => {
             }
         };
 
-        fetch('http://localhost:5000/foods', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(foodItem)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('inside post response', data);
-            if (data.insertedId) {
+        try {
+            const response = await axiosSecure.post('/foods', foodItem); 
+            console.log('inside post response', response.data);
+            if (response.data.insertedId) {
                 toast.success("Food Item Added Successfully");
                 navigate('/allfoods');
             }
-        });
+        } catch (error) {
+            console.error('Error adding food item:', error);
+        }
     }
 
     const handleSearchInputChange = (event, setStateFunction) => {

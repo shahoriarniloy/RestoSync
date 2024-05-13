@@ -67,7 +67,7 @@ const Purchase = () => {
         .then(data => {
             console.log('inside post response', data);
             if (data.insertedId) {
-                toast.success("Food Item Added Successfully");
+                toast.success("Food Item Purchased Successfully");
                 // navigate('/userfoods');
             }
         })

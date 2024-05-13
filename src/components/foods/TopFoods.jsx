@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../Theme';
+
+
 
 const TopFoods = () => {
+    const { darkTheme } = useTheme();
+
     const [topFoods, setTopFoods] = useState([]);
 
     useEffect(() => {
@@ -14,17 +19,17 @@ const TopFoods = () => {
     }, []);
 
     return (
-        <div className="container mx-auto">
-            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500'>Top Foods</h1>
+        <div className={` container mx-auto ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
+            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500 divider divider-warning mt-12 mb-12'>Top Foods</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center">
                 {topFoods.map(food => (
-                    <div key={food._id} className="card card-compact bg-base-100 shadow-xl">
+                    <div key={food._id} className={`card card-compact shadow-xl  ${darkTheme ? ' text-white bg-gray-600 ' : ''}`} >
                         <figure className="h-64 w-full">
                             <img src={food.foodImage} alt={food.foodName} className="image" />
                         </figure>
                         <div className="card-body">
                             <h2 className="card-title">{food.foodName}</h2>
-                            <p>{food.shortDescription}</p>
+                            <p className='font-paragraph'>{food.shortDescription}</p>
                             <div className='flex justify-between'>
                                 <p className='text-orange-700 font-paragraph'>Category: {food.foodCategory}</p>
                                 <p className='text-green-600'>Price: ${food.price}</p>

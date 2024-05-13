@@ -1,12 +1,21 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { useTheme } from '../components/Theme';
+
+
+
+
 
 const Main = () => {
 
+    const { darkTheme } = useTheme();
+
+
+
+
     return (
-            <div className=''>
+            <div className={`  ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
                 <Navbar></Navbar>
                 <Outlet />
                 <Footer></Footer>

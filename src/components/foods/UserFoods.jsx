@@ -1,35 +1,27 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../providers/AuthProvider';
+import useAxiosSecure from '../../hooks/useAxiosSecure'; 
 
 const UserFoods = () => {
   const [userFoods, setUserFoods] = useState([]);
   const { user, loading } = useContext(AuthContext);
-  
-  useEffect(() => {
-    if (!user) return; // Add this check to avoid fetching when user is null
+  const axiosSecure = useAxiosSecure(); 
 
-    fetch(`http://localhost:5000/userfoods/${user.email}`)
+  useEffect(() => {
+    if (!user) return; 
+
+    axiosSecure.get(`/userfoods/${user.email}`) 
       .then(response => {
-        if (!response.ok) {
+        if (!response.data) {
           throw new Error('Failed to fetch user foods');
         }
-        return response.json();
-      })
-      .then(data => {
-        if (Array.isArray(data)) {
-          setUserFoods(data);
-        } else if (typeof data === 'object' && data !== null) {
-          setUserFoods([data]);
-        } else {
-          console.error('Data received from server is not valid:', data);
-          setUserFoods([]); 
-        }
+        setUserFoods(response.data);
       })
       .catch(error => {
         console.error('Error fetching user foods:', error);
       });
-  }, [user]); // Add user to the dependency array
+  }, [user, axiosSecure]); 
 
   if (loading) {
     return (
@@ -41,8 +33,6 @@ const UserFoods = () => {
       </div>
     );
   }
-
-  
 
   return (
     <div>
@@ -59,13 +49,13 @@ const UserFoods = () => {
         <tbody>
           {userFoods.map((food) => (
             <tr key={food._id} className="hover">
-                <td>
+              <td>
                 <img 
-                    src={food.foodImage} 
-                    alt={food.foodName} 
-                    className="h-36 lg:w-1/2 md:w-1/2 w-full object-cover" 
+                  src={food.foodImage} 
+                  alt={food.foodName} 
+                  className="h-36 lg:w-1/2 md:w-1/2 w-full object-cover" 
                 />
-                </td>
+              </td>
               <td>{food.foodName}</td>
               <td>${food.price}</td>
               <td><Link to={`/userfood/update/${food._id}`} className="btn btn-warning">Update</Link></td>

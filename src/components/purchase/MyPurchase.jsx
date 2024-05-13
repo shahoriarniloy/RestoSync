@@ -1,39 +1,31 @@
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure'; // Import the custom hook
 
 const MyPurchase = () => {
   const [userPurchases, setUserPurchases] = useState([]);
   const { user, loading } = useContext(AuthContext);
-
+  const axiosSecure = useAxiosSecure(); // Use the custom hook to get the Axios instance
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!user) return; 
+        if (!user) return;
 
-        const response = await fetch(`http://localhost:5000/userpurchase/${user.email}`);
-        if (!response.ok) {
+        const response = await axiosSecure.get(`/userpurchase/${user.email}`);
+        if (!response.data) {
           throw new Error('Failed to fetch user purchases');
         }
 
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setUserPurchases(data);
-        } else if (typeof data === 'object' && data !== null) {
-          setUserPurchases([data]);
-        } else {
-          console.error('Data received from server is not valid:', data);
-          setUserPurchases([]); 
-        }
+        setUserPurchases(Array.isArray(response.data) ? response.data : [response.data]);
       } catch (error) {
         console.error('Error fetching user purchases:', error);
       }
     };
 
     fetchData();
-  }, [user]); 
+  }, [user, axiosSecure]);
 
   if (loading) {
     return (
@@ -46,37 +38,28 @@ const MyPurchase = () => {
     );
   }
 
-
-
-
   const handleDelete = (_id) => {
-    console.log(_id);
     Swal.fire({
-        title: "Are You Sure You Want to Delete It?",
-        text: "It Can't be Revert",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-        cancelButtonText: "Cancel",
+      title: "Are You Sure You Want to Delete It?",
+      text: "It Can't be Revert",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
     }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`http://localhost:5000/userpurchase/${_id}`, {
-                method: "DELETE",
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.deletedCount > 0) {
-                        userPurchases((prevPurchase) =>
-                            prevPurchase.filter((purchase) => purchase._id !== _id)
-                        ); 
-                        Swal.fire("Deleted!", "Your craft has been deleted.", "success");
-                    }
-                });
-
-        }
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/userpurchase/${_id}`)
+          .then((response) => {
+            if (response.data.deletedCount > 0) {
+              setUserPurchases(prevPurchases => prevPurchases.filter(purchase => purchase._id !== _id));
+              Swal.fire("Deleted!", "Your craft has been deleted.", "success");
+            }
+          }).catch(error => {
+            console.error('Error deleting purchase:', error);
+          });
+      }
     });
-};
-
+  };
 
   return (
     <div>
