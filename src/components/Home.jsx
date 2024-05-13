@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TopFoods from './foods/TopFoods';
+import TopResturants from './TopResturants';
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
@@ -62,6 +63,7 @@ const Banner = () => {
             </div>
           </div>
           <TopFoods></TopFoods>
+          <TopResturants></TopResturants>
 
         </div>
     );

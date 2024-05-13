@@ -2,8 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure'; 
+import { useTheme } from '../Theme';
+
 
 const UserFoods = () => {
+  const { darkTheme } = useTheme();
+
   const [userFoods, setUserFoods] = useState([]);
   const { user, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure(); 
@@ -36,11 +40,14 @@ const UserFoods = () => {
 
   return (
     <div>
+            <div className="divider divider-warning mb-12"></div>
+
       <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">User Foods</h1>
-      <table className="table table-zebra">
+      <div className="divider divider-warning mb-12"></div>
+      <table className= {` table ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
         <thead>
-          <tr>
-            <th>Image</th>
+          <tr className={`  ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
+            <th >Image</th>
             <th>Name</th>
             <th>Price</th>
             <th>Update</th>
@@ -48,7 +55,7 @@ const UserFoods = () => {
         </thead>
         <tbody>
           {userFoods.map((food) => (
-            <tr key={food._id} className="hover">
+            <tr key={food._id}  className={`  ${darkTheme ? 'hover:bg-gray-800' : ' hover:bg-base-200'}`}>
               <td>
                 <img 
                   src={food.foodImage} 

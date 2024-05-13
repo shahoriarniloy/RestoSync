@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { AuthContext } from './providers/AuthProvider';
 import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import useAxiosSecure from '../hooks/useAxiosSecure'; 
 Modal.setAppElement('#root');
 
 const Gallery = () => {
@@ -16,15 +16,15 @@ const Gallery = () => {
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure(); 
 
     useEffect(() => {
-        fetch('http://localhost:5000/feedback')
-            .then(response => response.json())
-            .then(data => {
-                setFeedback(data);
+        axiosSecure.get('/feedback') 
+            .then(response => {
+                setFeedback(response.data);
             })
             .catch(error => console.error('Error fetching feedback:', error));
-    }, []);
+    }, [axiosSecure]);
 
     const handleMouseEnter = index => {
         setHoveredIndex(index);
@@ -38,14 +38,15 @@ const Gallery = () => {
         if (user) {
             setModalIsOpen(true);
         } else {
-            navigate('/login', { state: { from: '/gallery' } });        }
+            navigate('/login', { state: { from: '/gallery' } });
+        }
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
     };
 
-    const handleFormSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
         const formData = {
@@ -54,17 +55,10 @@ const Gallery = () => {
             feedback: userFeedback
         };
 
-        fetch('http://localhost:5000/feedback', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('inside post response', data);
-                if (data.insertedId) {
+        axiosSecure.post('/feedback', formData) 
+            .then(response => {
+                console.log('inside post response', response.data);
+                if (response.data.insertedId) {
                     toast.success("Feedback Added Successfully");
                     if (location.state && location.state.from) {
                         navigate(location.state.from);
@@ -72,7 +66,8 @@ const Gallery = () => {
                         navigate('/gallery');
                     }
                 }
-            });
+            })
+            .catch(error => console.error('Error adding feedback:', error));
 
         setImageUrl('');
         setUserFeedback('');
@@ -125,40 +120,44 @@ const Gallery = () => {
                 ))}
             </div>
 
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Add Feedback Modal">
-                <button className="float-right" onClick={closeModal}>
-                    <FaWindowClose className="text-4xl text-white hover:bg-yellow-500" /><span className="text-red-500 text-xl">X </span>Close
-                </button>
-                <h2 className="text-center text-orange-500 font-tittle lg:mt-16">Add Feedback</h2>
-                <form className="max-w-md mx-auto" onSubmit={handleFormSubmit}>
+            <Modal 
+              isOpen={modalIsOpen} 
+              onRequestClose={closeModal} 
+              contentLabel="Add Feedback Modal" 
+              className="flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-50"
+              style={{ overlay: { zIndex: 500 } }}
+            >
+              <div className="bg-white rounded-lg w-1/2">
+                <div className="flex flex-col items-start p-4">
+                  <div className="flex items-center w-full">
+                    <div className="text-orange-00 font-medium text-lg font-tittle">Add Feedback</div>
+                    <FaWindowClose onClick={closeModal} className="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer" />
+                  </div>
+                  <form onSubmit={handleSubmit} className="w-full">
                     <input
-                        type="text"
-                        placeholder="Display Name"
-                        value={user ? user.displayName : ''}
-                        readOnly
-                        className="block w-full px-4 py-2 mb-4 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Image URL"
-                        value={imageUrl}
-                        onChange={e => setImageUrl(e.target.value)}
-                        className="block w-full px-4 py-2 mb-4 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                      type="text"
+                      placeholder="Image URL"
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                      className="block w-full px-4 py-2 mb-4 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
                     />
                     <textarea
-                        placeholder="Feedback"
-                        value={userFeedback}
-                        onChange={e => setUserFeedback(e.target.value)}
-                        className="block w-full px-4 py-2 mb-4 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Feedback"
+                      value={userFeedback}
+                      onChange={(e) => setUserFeedback(e.target.value)}
+                      className="block w-full px-4 py-2 mb-4 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
                     ></textarea>
                     <button
-                        type="submit"
-                        className="block w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="submit"
+                      className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
                     >
-                        Submit
+                      Submit
                     </button>
-                </form>
+                  </form>
+                </div>
+              </div>
             </Modal>
+
         </div>
     );
 };

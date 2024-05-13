@@ -1,12 +1,16 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
-import useAxiosSecure from '../../hooks/useAxiosSecure'; // Import the custom hook
+import useAxiosSecure from '../../hooks/useAxiosSecure'; 
+import { useTheme } from '../Theme';
+
 
 const MyPurchase = () => {
+  const { darkTheme } = useTheme();
+
   const [userPurchases, setUserPurchases] = useState([]);
   const { user, loading } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure(); // Use the custom hook to get the Axios instance
+  const axiosSecure = useAxiosSecure(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,9 +68,9 @@ const MyPurchase = () => {
   return (
     <div>
       <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">My Purchases</h1>
-      <table className="table table-zebra">
+      <table className= {` table ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
         <thead>
-          <tr>
+        <tr className={`  ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
             <th>Image</th>
             <th>Name</th>
             <th>Price</th>
@@ -75,8 +79,8 @@ const MyPurchase = () => {
         </thead>
         <tbody>
           {userPurchases.map((food) => (
-            <tr key={food._id} className="hover">
-              <td>
+            <tr key={food._id}  className={`  ${darkTheme ? 'hover:bg-gray-800' : ' hover:bg-base-200'}`}>
+            <td>
                 <img 
                   src={food.image} 
                   alt={food.foodName} 

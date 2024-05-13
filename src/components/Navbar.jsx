@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -37,7 +36,10 @@ const Navbar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul
+  tabIndex={0}
+  className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 ${darkTheme ? 'text-white bg-black' : 'text-black bg-base'}`}
+>
 <li><NavLink className={({ isActive, isPending }) =>
               isActive
                 ? ("text-green-500")
@@ -65,8 +67,8 @@ const Navbar = () => {
 </div>
 
               </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+            <div className="navbar-center hidden lg:flex " >
+                <ul className="menu menu-horizontal px-1 ">
                 <li><NavLink className={({ isActive, isPending }) =>
               isActive
                 ? ("text-green-500")
@@ -119,7 +121,7 @@ const Navbar = () => {
                         <img className="rounded-full h-16 w-16 border border-white lg:border-2" alt="Profile Image" src={user.photoURL ? user.photoURL : "https://i.ibb.co/v1qmfRn/836.jpg"} />
                     </div>
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <ul tabIndex={0} className={` navbar ${darkTheme ? ' text-white bg-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52' : 'text-black bg-base-100 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52'}`}>
                     <li>
                         <Link to="/profile" className="justify-between">
                             {user.displayName ? user.displayName : `Profile`}
