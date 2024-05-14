@@ -3,7 +3,6 @@ import { AuthContext } from "../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const UpdateProfile = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
   const [name, setName] = useState(user.displayName || "");
@@ -25,7 +24,7 @@ const UpdateProfile = () => {
       <Helmet>
         <title>Update Profile</title>
       </Helmet>
-      <h1 className="text-center text-4xl text-purple-900 lg:mb-16">Profile</h1>
+      <h1 className="text-center text-4xl font-tittle text-orange-500 lg:mb-16">Profile</h1>
       <form onSubmit={handleSaveChanges}>
         <label className="form-control">
           <div className="label">
@@ -43,7 +42,7 @@ const UpdateProfile = () => {
             onChange={(e) => setPhotoURL(e.target.value)}  className="input input-bordered" />
         </label>
 
-        <button className="btn btn-success mt-4 w-64 p-0 lg:mb-12 " type="submit">Save Changes</button>
+        <button className="btn btn-success  text-white mt-4 w-64 p-0 lg:mb-12 " type="submit">Save Changes</button>
       </form>
     </div>
   );

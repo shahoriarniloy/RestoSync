@@ -67,7 +67,10 @@ const MyPurchase = () => {
 
   return (
     <div>
+      <div className="divider divider-warning mb-12"></div>
+
       <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">My Purchases</h1>
+<div className="divider divider-warning mb-12"></div>
       <table className= {` table ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
         <thead>
         <tr className={`  ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>

@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/login',
-        element: <Login></Login>
+        element: <PublicRoutes><Login></Login></PublicRoutes>
 
       },
      
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/foods',
-        element: <AddFood></AddFood>
+        element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>
       },
       {
         path:'/allfoods',
@@ -71,13 +71,13 @@ const router = createBrowserRouter([
       {
         path:'/fooddetails/:id',
         element: <SingleFood></SingleFood>,
-        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://resturant-pied-eta.vercel.app/fooddetails/${params.id}`)
 
       },
       {
         path:'/purchase/:id',
         element: <PrivateRoutes><Purchase></Purchase></PrivateRoutes>,
-        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://resturant-pied-eta.vercel.app/fooddetails/${params.id}`)
 
       },
       {
@@ -93,7 +93,7 @@ const router = createBrowserRouter([
       {
         path:'/userfood/update/:id',
         element: <PrivateRoutes><UpdateFood></UpdateFood></PrivateRoutes>,
-        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://resturant-pied-eta.vercel.app/fooddetails/${params.id}`)
 
       },
       {

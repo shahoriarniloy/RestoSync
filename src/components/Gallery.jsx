@@ -4,7 +4,8 @@ import Modal from 'react-modal';
 import { AuthContext } from './providers/AuthProvider';
 import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAxiosSecure from '../hooks/useAxiosSecure'; 
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet'; 
 Modal.setAppElement('#root');
 
 const Gallery = () => {
@@ -48,16 +49,18 @@ const Gallery = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        console.log(user.email);
 
         const formData = {
             displayName: user.displayName,
             imageUrl: imageUrl,
-            feedback: userFeedback
+            feedback: userFeedback,
+            email: user.email,
         };
 
         axiosSecure.post('/feedback', formData) 
             .then(response => {
-                console.log('inside post response', response.data);
+                // console.log('inside post response', response.data);
                 if (response.data.insertedId) {
                     toast.success("Feedback Added Successfully");
                     if (location.state && location.state.from) {
@@ -87,6 +90,9 @@ const Gallery = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>Gallery</title>
+            </Helmet>
            <div className="bg-white bg-opacity-50 bg-cover w-full h-54" style={{backgroundImage: "url('https://i.ibb.co/TRfPJHL/fresh-gourmet-meal-beef-taco-salad-plate-generated-by-ai.jpg')"}}>
                 <h1 className='font-tittle text-orange-500 text-center lg:text-8xl md:text-4xl text-xl py-24'>Gallery</h1>
             </div>

@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signOut} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut} from "firebase/auth";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -29,7 +29,7 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email);
+        // console.log(email);
     
         signInUser(email, password)
             .then(result => {
@@ -56,7 +56,6 @@ const Login = () => {
     const [user, setUser] = useState(null);
 
     const googleProvider = new GoogleAuthProvider();
-    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
@@ -90,26 +89,11 @@ const Login = () => {
     };
     
 
-    const handleGitHubSignIn = () => {
-        signInWithPopup(auth, githubProvider)
-            .then(result => {
-                toast.success("Signed In");
-                const loggedUser = result.user;
-
-                setUser(loggedUser);
-                navigate(location.state && location.state.from ? location.state.from : '/');
-
-
-            })
-            .catch(error => {
-                toast.error("Please check your credential or try again later ");
-
-                console.log(error);
-            });
-    };
+  
 
     return (
-        <div className="max-w-[1400px] mx-auto mb-0 h-fit " >
+        <div className="lg:w-1/2 md:w-1/2 w-full mx-auto mb-0 h-fit  font-lg font-bold bg-orange-100 p-8 rounded-lg" >
+            <h1 className="font-tittle text-4xl text-center  mb-4  text-orange-600 font-bold">Login</h1>
             <div className="flex justify-center">
             <img src="https://i.ibb.co/f8qWJY4/OIG4-m-M0lvw5e-Lb-Jt.jpg" alt="logo" className="h-32 w-32 rounded-full "/>
 
@@ -164,7 +148,7 @@ const Login = () => {
                         <button onClick={handleGoogleSignOut} className="btn btn-red mt-0">Sign Out</button>
                     ) : (
                         <div>
-                            <h2 className="text-sm text-center text-gray-600  mt-6 mb-2">Or, Sign In With:</h2>
+                            <h2 className="text-sm text-center text-gray-600  mt-6 mb-2 font-paragraph">Or, Sign In With:</h2>
                             <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center items-center gap-6"> 
                                 <button onClick={handleGoogleSignIn} className="btn bg-white lg:mr-4 md:mr-4"><img className="w-12 h-auto" src="https://i.ibb.co/CQFy59y/google.png" alt="" style={{ width: "32px", height: "32px" }} />Google Login</button>
                             </div>

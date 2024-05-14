@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Theme';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -10,7 +11,7 @@ const TopFoods = () => {
     const [topFoods, setTopFoods] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/topfoods')
+        fetch('https://resturant-pied-eta.vercel.app/topfoods')
             .then(response => response.json())
             .then(data => {
                 setTopFoods(data);
@@ -20,6 +21,9 @@ const TopFoods = () => {
 
     return (
         <div className={` container mx-auto ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
+             <Helmet>
+                <title>Top Food Item</title>
+            </Helmet>
             <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500 divider divider-warning mt-12 mb-12'>Top Foods</h1>
             <p className="font-paragraph font-sm text-center text-yellow-500">Indulge in our top-selling delights, where taste meets tradition in every bite. From succulent steaks to exquisite pastries, experience culinary excellence curated just for you. Elevate your dining experience with our handpicked selection of crowd favorites</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center">

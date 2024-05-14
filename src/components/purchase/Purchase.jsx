@@ -53,7 +53,7 @@ const Purchase = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        fetch('https://localhost:5000/purchase', {
+        fetch('https://resturant-pied-eta.vercel.app/purchase', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ const Purchase = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log('inside post response', data);
+            // console.log('inside post response', data);
             if (data.insertedId) {
                 toast.success("Food Item Purchased Successfully");
                 // navigate('/userfoods');
@@ -75,7 +75,7 @@ const Purchase = () => {
             console.error('Error adding food item:', error);
             toast.error("Failed to add food item");
         });       
-        console.log(formData);
+        // console.log(formData);
     };
 
     return (

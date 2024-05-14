@@ -22,7 +22,7 @@ const Register = () => {
         const url = e.target.url.value;
         const password = e.target.password.value;
 
-        console.log(email, password, name, url);
+        // console.log(email, password, name, url);
         const uppercaseRegex = /[A-Z]/;
         const lowercaseRegex = /[a-z]/;
         if (password.length < 6) {
@@ -51,7 +51,7 @@ const Register = () => {
             const user = { email, name };
 
             // Save user data to the database
-            fetch('https://localhost:5000/user', {
+            fetch('https://resturant-pied-eta.vercel.app/user', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

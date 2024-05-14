@@ -113,7 +113,7 @@ const Navbar = () => {
 
 
             <div className="flex-none">
-    <div className="dropdown dropdown-end flex items-center">
+    <div className="dropdown dropdown-end flex items-center w-1/2">
         {user ? (
             <>
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -121,15 +121,21 @@ const Navbar = () => {
                         <img className="rounded-full h-16 w-16 border border-white lg:border-2" alt="Profile Image" src={user.photoURL ? user.photoURL : "https://i.ibb.co/v1qmfRn/836.jpg"} />
                     </div>
                 </div>
-                <ul tabIndex={0} className={` navbar ${darkTheme ? ' text-white bg-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52' : 'text-black bg-base-100 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52'}`}>
-                    <li>
+                <ul tabIndex={0} className={` navbar ${darkTheme ? ' text-white bg-black menu menu-sm dropdown-content mt-8 z-[1] p-2 shadow rounded-box w-52' : 'text-black bg-base-100 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52'}`}>
+                    
+                    {/* {user? <div>                    <li>{user.displayName}</li>
+</div> :``} */}
+                    {/* <li>
                         <Link to="/profile" className="justify-between">
                             {user.displayName ? user.displayName : `Profile`}
                         </Link>
-                    </li>
+                    </li> */}
+                    <li className='mt-16'><Link to="/profile">{user.displayName}</Link></li>
                     <li><button ><Link to="/foods">Add Food Item</Link></button></li>
                     <li><button ><Link to="/userfoods">My Food Items</Link></button></li>
                     <li><button ><Link to="/userpurchases/:id">My Purchases</Link></button></li>
+                    
+
 
                     <li><a onClick={handleLogOut}>Logout</a></li>
                 </ul>

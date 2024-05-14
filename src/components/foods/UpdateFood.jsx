@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { AuthContext } from '../providers/AuthProvider';
 import { useLoaderData } from "react-router-dom";
-
+import useAxiosSecure from '../../hooks/useAxiosSecure'; 
 
 const UpdateFood = () => {
     const navigate = useNavigate();
     const loadedFood = useLoaderData();
-    const { user } = useContext(AuthContext); 
+    const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -23,8 +24,8 @@ const UpdateFood = () => {
         const foodOrigin = form.foodOrigin.value;
         const shortDescription = form.shortDescription.value;
         const addBy = {
-            name: user.name, 
-            email: user.email 
+            name: user.name,
+            email: user.email
         };
         const updatedFood = {
             foodName,
@@ -36,18 +37,13 @@ const UpdateFood = () => {
             shortDescription,
             addBy
         };
-        fetch(`https://localhost:5000/userfood/update/${loadedFood._id}`, {            
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedFood)
-        })
+
+        axiosSecure.put(`/userfood/update/${loadedFood._id}`, updatedFood)
             .then(res => {
-                if (!res.ok) {
+                if (!res.status === 200) {
                     throw new Error('Network response was not ok');
                 }
-                return res.json();
+                return res.data;
             })
             .then(data => {
                 console.log(data);

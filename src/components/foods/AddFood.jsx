@@ -89,7 +89,7 @@ const AddFood = () => {
 
         try {
             const response = await axiosSecure.post('/foods', foodItem); 
-            console.log('inside post response', response.data);
+            // console.log('inside post response', response.data);
             if (response.data.insertedId) {
                 toast.success("Food Item Added Successfully");
                 navigate('/allfoods');

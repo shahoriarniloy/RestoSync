@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useContext} from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import UserFoods from '../foods/UserFoods';
+import MyPurchase from '../purchase/MyPurchase';
 
 
 
@@ -13,11 +15,19 @@ const ViewProfile = () => {
 
 
   return (
-    <div className="max-w-[1400px] m-auto flex flex-col justify-center items-center gap-6 h-3/4">
+
+
+    <div className='w-3/4 grid grid-cols-1  mx-auto'>
+
+<div className="w-full m-auto flex flex-col justify-center items-center gap-6 h-3/4">
       <Helmet>
                 <title>View Profile</title>
             </Helmet>
-      <h1 className="text-center text-4xl text-black  font-bold mt-4 lg:mt-12 lg:mb-16">Profile</h1>
+
+            <div className="divider divider-warning mb-4"></div>
+
+            <h1 className="text-center text-4xl text-orange-500  font-bold   font-tittle">Profile</h1>
+<div className="divider divider-warning mb-12"></div>
     
 
 
@@ -29,13 +39,13 @@ const ViewProfile = () => {
 
 
 
-        <div className="w-3/4 p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800 rounded-xl mb-0">
+        <div className="w-3/4 p-8 sm:flex sm:space-x-6 bg-orange-100 text-black rounded-xl mb-0">
             <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
                 <img src={user.photoURL} alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
             </div>
             <div className="flex flex-col space-y-4">
                 <div>
-                    <h2 className="text-2xl font-semibold">{user.displayName}</h2>
+                    <h2 className="text-2xl font-semibold font-tittle">{user.displayName}</h2>
                 </div>
                 <div className="space-y-1">
                     <span className="flex items-center space-x-2">
@@ -45,15 +55,24 @@ const ViewProfile = () => {
                         <span className="dark:text-gray-600">{user.email}</span>
                     </span>
 
-                    <Link  to="/updateprofile"><button className='btn bg-gray-900 border border-black text-white w-full mt-4 mb-4'>Update</button></Link>
+                    <Link  to="/updateprofile"><button className='btn bg-gray-900 border border-black text-white w-full mt-4 mb-4'>Update Profile</button></Link>
 
                     
                 </div>
             </div>
 
         </div>
+       
 
 </div>
+<div className='flex lg:flex-row flex-col lg:gap-6'>
+<UserFoods></UserFoods>
+        <MyPurchase></MyPurchase>
+</div>
+
+
+    </div>
+    
 
 
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Theme';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -11,7 +12,7 @@ const AllFoods = () => {
     const [searchInput, setSearchInput] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/foods')
+        fetch('https://resturant-pied-eta.vercel.app/foods')
             .then(response => response.json())
             .then(data => {
                 setTopFoods(data);
@@ -29,6 +30,9 @@ const AllFoods = () => {
 
     return (
         <div className={` container mx-auto ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
+             <Helmet>
+                <title>Add Food Item</title>
+            </Helmet>
             <div className=" lg:text-4xl md:text-4xl text-orange-500 text-xl text-center font-tittle mt-6 mb-6">All Foods</div>
             <div className="mx-auto w-3/4 mb-6">
                 <input
