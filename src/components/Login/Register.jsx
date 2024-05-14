@@ -51,7 +51,7 @@ const Register = () => {
             const user = { email, name };
 
             // Save user data to the database
-            fetch('http://localhost:5000/user', {
+            fetch('https://localhost:5000/user', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

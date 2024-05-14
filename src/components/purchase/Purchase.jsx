@@ -53,7 +53,7 @@ const Purchase = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        fetch('http://localhost:5000/purchase', {
+        fetch('https://localhost:5000/purchase', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

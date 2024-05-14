@@ -71,13 +71,13 @@ const router = createBrowserRouter([
       {
         path:'/fooddetails/:id',
         element: <SingleFood></SingleFood>,
-        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
 
       },
       {
         path:'/purchase/:id',
         element: <PrivateRoutes><Purchase></Purchase></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
 
       },
       {
@@ -93,7 +93,7 @@ const router = createBrowserRouter([
       {
         path:'/userfood/update/:id',
         element: <PrivateRoutes><UpdateFood></UpdateFood></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/fooddetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://localhost:5000/fooddetails/${params.id}`)
 
       },
       {

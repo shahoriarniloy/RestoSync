@@ -2,7 +2,7 @@
 const TopResturants = () => {
     return (
         <div className="">
-            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500 divider divider-warning mt-12 mb-12'>Top Resturants</h1>
+            <h1 className='lg:text-4xl md:text-4xl text-xl text-center font-tittle mt-6 mb-6 text-orange-500 divider divider-warning mt-12 mb-12'>Chef's Corner</h1>
             <p className="font-paragraph font-sm text-center text-yellow-500 mb-12">Embark on a gastronomic journey with us as we unveil the world's culinary gems. Explore a diverse array of top-rated restaurants handpicked by our experts, promising a symphony of flavors and ambiance. Let us guide you to unforgettable dining experiences, where every meal is a celebration of taste and culture.</p>
             <div className="flex lg:flex-row md:flex-row flex-col justify-around">
             <div className="card card-compact flex-row justify-center items-center lg:w-1/2 md:w-1/2 w-full">
