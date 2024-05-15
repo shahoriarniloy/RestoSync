@@ -3,7 +3,7 @@
 This project is a full-stack Restaurant Management website developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). It aims to provide users with an exceptional food experience by offering a platform where they can explore various food items, make purchases, and interact with the restaurant's online presence.
 
 ## Live Site URL
-[Your Live Site URL Here]
+[https://restosync-3d474.web.app]
 
 ## Features
 - **Responsive Design:** The website is fully responsive, ensuring seamless user experience across devices including mobile, tablet, and desktop.
