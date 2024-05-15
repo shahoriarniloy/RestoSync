@@ -51,7 +51,7 @@ const Register = () => {
             const user = { email, name };
 
             // Save user data to the database
-            fetch('https://resturant-pied-eta.vercel.app/user', {
+            fetch('https://resturant-pied-eta.vercel.app/register', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

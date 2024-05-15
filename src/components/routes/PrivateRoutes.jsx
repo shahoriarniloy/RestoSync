@@ -5,31 +5,22 @@ import { useContext } from 'react';
 
 
 const PrivateRoutes = ({children}) => {
-    const {user, loading}= useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
-    if(loading)
-    {
-        
-        return <div className='flex flex-row justify-center items-center'>
 
-        <span className="loading loading-bars loading-xs"></span>
-        <span className="loading loading-bars loading-sm"></span>
-        <span className="loading loading-bars loading-md"></span>
-        <span className="loading loading-bars loading-lg"></span>
-        </div>
-        
-    }
-    if(user){
-        return children;
-    }
 
+    if(loading){
+        return <span className="loading loading-bars loading-lg "></span>
+    }
+    if(!user){
+        return <Navigate to='/login' state={location?.pathname || '/' }></Navigate>
+    }
     
-
     return (
-        <>
-            <Navigate state={location.pathname} to="/login"></Navigate>
-        </>
+        <div>
+           {children}
+        </div>
     );
 };
 

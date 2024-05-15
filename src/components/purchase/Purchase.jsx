@@ -3,10 +3,12 @@ import { Helmet } from 'react-helmet';
 import { AuthContext } from '../providers/AuthProvider';
 import { useLoaderData } from "react-router-dom";
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../hooks/useAxiosSecure'; 
 
 const Purchase = () => {
     const loadedFood = useLoaderData();
-    const { user, loading } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure(); 
 
     const [formData, setFormData] = useState({
         foodName: '',
@@ -53,20 +55,12 @@ const Purchase = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        fetch('https://resturant-pied-eta.vercel.app/purchase', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                ...formData,
-                foodId: loadedFood._id 
-            })
+        axiosSecure.post('/purchase', { 
+            ...formData,
+            foodId: loadedFood._id 
         })
-        .then(res => res.json())
-        .then(data => {
-            // console.log('inside post response', data);
-            if (data.insertedId) {
+        .then(response => {
+            if (response.data.insertedId) {
                 toast.success("Food Item Purchased Successfully");
                 // navigate('/userfoods');
             }
@@ -75,7 +69,6 @@ const Purchase = () => {
             console.error('Error adding food item:', error);
             toast.error("Failed to add food item");
         });       
-        // console.log(formData);
     };
 
     return (
@@ -116,7 +109,12 @@ const Purchase = () => {
                         <label htmlFor="buyingDate" className="block text-sm font-medium text-gray-700">Buying Date</label>
                         <input type="text" id="buyingDate" name="buyingDate" value={formData.buyingDate} className="mt-1 p-2 w-full border rounded-md focus:outline-none" readOnly />
                     </div>
-                    <button type="submit" disabled={exceedsQuantity} className={`bg-orange-500 text-white py-2 px-4 rounded-md w-full ${exceedsQuantity ? 'cursor-not-allowed opacity-50' : 'hover:bg-yellow-600 focus:outline-none focus:bg-blue-600'}`}>Purchase</button>
+
+
+                    {user.email !=loadedFood.addedBy.email ? (<div><button type="submit" disabled={exceedsQuantity} className={`bg-orange-500 text-white py-2 px-4 rounded-md w-full ${exceedsQuantity ? 'cursor-not-allowed opacity-50' : 'hover:bg-yellow-600 focus:outline-none focus:bg-blue-600'}`}>Purchase</button></div>):( <div className='flex-col justify-center'><p className='font-paragraph text-red-500'>You Can Not Purchase Own Food</p><button type="submit" disabled className="bg-gray-500 text-white py-2 px-4 rounded-md w-full">Purchase</button></div>)}
+
+
+                    
                 </form>
             </div>
         </div>

@@ -24,11 +24,14 @@ const Login = () => {
     
     const navigate = useNavigate();
     const { darkTheme } = useTheme();
+    const loc =location?.state || "/";
+
 
     const handleLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
         // console.log(email);
     
         signInUser(email, password)
@@ -37,8 +40,11 @@ const Login = () => {
                 toast.success("Signed In");
     
                 e.target.reset();
-                navigate(location?.state ? location.state : '/');
-            })
+                console.log(loc);
+                navigate(loc);
+
+
+                         })
             .catch(error => {
                 console.error(error);
 
@@ -62,10 +68,10 @@ const Login = () => {
             .then(result => {
                 toast.success("Signed In");
                 const loggedInUser = result.user;
-
-                
                 setUser(loggedInUser);
-                navigate(location.state && location.state.from ? location.state.from : '/');
+                
+                navigate(loc);
+      
 
 
             })

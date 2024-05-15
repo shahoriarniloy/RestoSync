@@ -35,7 +35,10 @@ const SingleFood = () => {
                    {user && user.email!=loadedFood.addedBy.email && loadedFood.quantity > 0? (<div>
                     <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500 w-full hover:bg-yellow-400 text-white" >Purchase</button></Link>
                    </div>):( <div>{!user && loadedFood.quantity > 0 ? (
-                    <Link to={`/purchase/${loadedFood._id}`}><button className="btn bg-orange-500 w-full text-white  hover:bg-yellow-400" >Purchase</button></Link>
+                    <Link to={{
+                        pathname: `/purchase/${loadedFood._id}`,
+                        state: { from: '/login' }
+                    }}><button className="btn bg-orange-500 w-full text-white  hover:bg-yellow-400" >Purchase</button></Link>
                 ) : (
                         <div>
                             <p className="text-red-500 text-center ">This item is currently not available for purchase.</p>

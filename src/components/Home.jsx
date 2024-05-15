@@ -5,6 +5,7 @@ import TopFoods from './foods/TopFoods';
 import TopResturants from './TopResturants';
 import Events from './Events';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Banner = () => {
 
@@ -35,6 +36,9 @@ const Banner = () => {
     
     return (
         <div className='w-full'>
+           <Helmet>
+                <title>HOME</title>
+            </Helmet>
           <div className="grid grid-cols-3 h-fit  overflow-hidden">
             <div className="h-full">
               <Slider {...firstCarouselSettings}>

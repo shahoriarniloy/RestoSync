@@ -3,6 +3,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure'; 
 import { useTheme } from '../Theme';
+import { Helmet } from "react-helmet";
 
 
 const MyPurchase = () => {
@@ -67,6 +68,9 @@ const MyPurchase = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>My Purchases</title>
+      </Helmet>
       <div className="divider divider-warning mb-12"></div>
 
       <h1 className="font-tittle lg:text-4xl md:text-4xl text-xl text-center text-orange-500 mt-12">My Purchases</h1>

@@ -31,7 +31,7 @@ const AllFoods = () => {
     return (
         <div className={` container mx-auto ${darkTheme ? ' text-white bg-black' : 'text-black bg-base'}`}>
              <Helmet>
-                <title>Add Food Item</title>
+                <title>All Foods</title>
             </Helmet>
             <div className=" lg:text-4xl md:text-4xl text-orange-500 text-xl text-center font-tittle mt-6 mb-6">All Foods</div>
             <div className="mx-auto w-3/4 mb-6">

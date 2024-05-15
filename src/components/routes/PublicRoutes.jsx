@@ -1,16 +1,28 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import { AuthContext } from '../providers/AuthProvider';
 
 const PublicRoutes = ({ children }) => {
     const { user } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
+
 
    
     
 
     if (user) {
-        return <Navigate to="/" />;
+
+        if (location.state && location.state.pathname) {
+            navigate(location.state.pathname);
+        } else {
+
+            navigate('/');
+        }     
 
     }
 

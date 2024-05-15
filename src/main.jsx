@@ -44,7 +44,10 @@ const router = createBrowserRouter([
       },
       {
         path:'/login',
-        element: <PublicRoutes><Login></Login></PublicRoutes>
+        // element: <PublicRoutes><Login></Login></PublicRoutes>
+        element: <Login></Login>
+
+
 
       },
      
