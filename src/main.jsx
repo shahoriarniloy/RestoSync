@@ -31,6 +31,7 @@ import Gallery from './components/Gallery.jsx';
 import UserFoods from './components/foods/UserFoods.jsx';
 import UpdateFood from './components/foods/UpdateFood.jsx';
 import MyPurchase from './components/purchase/MyPurchase.jsx';
+import CategoryFoods from './components/foods/CategoryFoods.jsx';
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,11 @@ const router = createBrowserRouter([
 
 
       },
+      
+      {
+        path:'/categoryfoods/:categoryName',
+        element: <CategoryFoods />,
+      }
       
 
       
