@@ -6,10 +6,6 @@ This project is a full-stack Restaurant Management website developed using the M
 [https://restosync-3d474.web.app]
 
 
-## To Run Locally
-- **Clone the Repository:** Provides the command to clone the repository using Git.
-- **Install Dependencies:** Uses `npm install` to install all necessary dependencies for the project.
-- **Run the Project:** Executes `npm run dev` to start the project in development mode.
 
 ## Features
 - **Responsive Design:** The website is fully responsive, ensuring seamless user experience across devices including mobile, tablet, and desktop.
@@ -36,6 +32,12 @@ This project is a full-stack Restaurant Management website developed using the M
 - JWT Authentication
 - React Router
 - Tailwind CSS (for styling)
+
+
+## To Run Locally
+- **Clone the Repository:** Provides the command to clone the repository using Git.
+- **Install Dependencies:** Uses `npm install` to install all necessary dependencies for the project.
+- **Run the Project:** Executes `npm run dev` to start the project in development mode.
 
 
 
