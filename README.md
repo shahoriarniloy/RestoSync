@@ -5,6 +5,9 @@ This full-stack Restaurant Management website, built with the MERN Stack (MongoD
 ## Live Site URL
 [https://restosync-3d474.web.app]
 
+## Server Side
+[https://github.com/shahoriarniloy/RestoSync-Server]
+
 ## Features
 - **Responsive Design:** Seamless experience across devices.
 - **CRUD Operations:** Full Create, Read, Update, and Delete functionalities.
